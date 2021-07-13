@@ -11,6 +11,7 @@
     <modules>
         <module>rookie-shiro-demo</module>
         <module>rookie-shiro-httpbasic</module>
+        <module>rookie-shiro-api</module>
     </modules>
 
     <properties>
