@@ -63,6 +63,13 @@
       <artifactId>shiro-core</artifactId>
       <version>1.7.1</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-web</artifactId>
+      <version>1.7.1</version>
+    </dependency>
+
     <!-- Shiro uses SLF4J for logging.  We'll use the 'simple' binding
          in this example app.  See http://www.slf4j.org for more info. -->
 
@@ -83,6 +90,17 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.23</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5</version>
     </dependency>
   </dependencies>
 
