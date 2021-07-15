@@ -32,4 +32,12 @@ class SysRoleServiceImplTest {
             System.out.println(sysRole);
         }
     }
+
+    @Test
+     void getRoleByMenuId(){
+        List<SysRole> roleByMenuId = sysRoleService.getRoleByMenuId(1);
+        for (SysRole sysRole : roleByMenuId) {
+            System.out.println(sysRole);
+        }
+    }
 }

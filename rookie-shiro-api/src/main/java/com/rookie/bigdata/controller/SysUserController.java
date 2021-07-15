@@ -1,24 +1,20 @@
 package com.rookie.bigdata.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rookie.bigdata.common.Result;
 import com.rookie.bigdata.entity.SysUser;
 import com.rookie.bigdata.service.SysUserService;
+import com.rookie.bigdata.util.JWTUtils;
 import org.apache.shiro.authc.credential.PasswordService;
-import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
-import sun.security.util.Password;
-import util.JWTUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static util.JWTUtils.TOKEN_HEADER;
 
 /**
  * <p>
@@ -64,10 +60,11 @@ public class SysUserController {
             return Result.fail(401, "账号或密码错误");
         }
 
+
         //需要生成token
         String token = JWTUtils.create(sysUserByName);
         Map<String,String> map=new HashMap<>();
-        map.put(TOKEN_HEADER,token);
+        map.put(JWTUtils.TOKEN_HEADER,token);
 
 
         return Result.succ(200, "sucess", map);

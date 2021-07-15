@@ -30,4 +30,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
         return sysRoleMapper.getRoleByUserId(id);
     }
+
+    @Override
+    public List<SysRole> getRoleByMenuId(Integer id) {
+        return sysRoleMapper.getRoleByMenuId(id);
+    }
 }

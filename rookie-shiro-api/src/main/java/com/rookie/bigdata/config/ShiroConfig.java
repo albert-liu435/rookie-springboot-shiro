@@ -1,18 +1,21 @@
 package com.rookie.bigdata.config;
 
-import com.rookie.bigdata.shiro.OAuth2Filter;
 import com.rookie.bigdata.shiro.OAuth2Realm;
+import com.rookie.bigdata.shiro.ShiroService;
+import com.rookie.bigdata.shiro.filter.CustomerPermissionsAuthorizationFilter;
+import com.rookie.bigdata.shiro.filter.CustomerRolesAuthorizationFilter;
+import com.rookie.bigdata.shiro.filter.OAuth2Filter;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -24,6 +27,10 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+
+    @Autowired
+    private ShiroService shiroService;
 
 
     /**
@@ -58,13 +65,18 @@ public class ShiroConfig {
         //创建自定义过滤器，并进行设置
         Map<String, Filter> filters = new HashMap<>();
         filters.put("oauth2", new OAuth2Filter());
+        filters.put("customerRoles",new CustomerRolesAuthorizationFilter());
+        filters.put("customerPerms",new CustomerPermissionsAuthorizationFilter());
         shiroFilter.setFilters(filters);
 
-        Map<String, String> filterMap = new LinkedHashMap<>();
-        //任何用户都可以进行登录操作
-        filterMap.put("/sys/login", "anon");
-        filterMap.put("/api/**", "oauth2");
-        // filterMap.put("/**", "anon");
+//        Map<String, String> filterMap = new LinkedHashMap<>();
+//        //任何用户都可以进行登录操作
+//        filterMap.put("/sys/login", "anon");
+//        filterMap.put("/api/**", "oauth2");
+//         filterMap.put("/**", "anon");
+
+        Map<String, String> filterMap = shiroService.loadFilterChainDefinitionMap();
+
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
 

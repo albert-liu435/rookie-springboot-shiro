@@ -10,4 +10,12 @@
         where b.user_id=#{id}
     </select>
 
+
+    <select id="getRoleByMenuId" resultType="com.rookie.bigdata.entity.SysRole">
+        select a.*
+        from sys_role as a
+                 left join sys_role_menu as b on a.id=b.role_id
+        where b.menu_id=#{id}
+    </select>
+
 </mapper>

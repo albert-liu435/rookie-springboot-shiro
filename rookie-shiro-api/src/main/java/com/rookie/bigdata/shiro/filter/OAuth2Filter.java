@@ -1,5 +1,7 @@
-package com.rookie.bigdata.shiro;
+package com.rookie.bigdata.shiro.filter;
 
+import com.rookie.bigdata.shiro.OAuth2Token;
+import com.rookie.bigdata.util.JWTUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 import org.springframework.util.StringUtils;
@@ -47,11 +49,11 @@ public class OAuth2Filter extends AuthenticatingFilter {
      */
     private String getRequestToken(HttpServletRequest request) {
         //从header中获取token
-        String token = request.getHeader("token");
+        String token = request.getHeader(JWTUtils.TOKEN_HEADER);
 
         //如果header中不存在token，则从参数中获取token
         if (StringUtils.isEmpty(token)) {
-            token = request.getParameter("token");
+            token = request.getParameter(JWTUtils.TOKEN_HEADER);
         }
 
         return token;

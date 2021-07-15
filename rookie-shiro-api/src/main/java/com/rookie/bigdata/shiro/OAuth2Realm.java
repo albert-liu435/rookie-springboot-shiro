@@ -1,20 +1,18 @@
 package com.rookie.bigdata.shiro;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rookie.bigdata.entity.SysMenu;
 import com.rookie.bigdata.entity.SysRole;
 import com.rookie.bigdata.entity.SysUser;
 import com.rookie.bigdata.service.SysMenuService;
 import com.rookie.bigdata.service.SysRoleService;
 import com.rookie.bigdata.service.SysUserService;
+import com.rookie.bigdata.util.JWTUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import util.JWTUtils;
 
 import java.util.HashSet;
 import java.util.List;
@@ -38,6 +36,12 @@ public class OAuth2Realm extends AuthorizingRealm {
 
     @Autowired
     private SysMenuService sysMenuService;
+
+
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return token instanceof OAuth2Token;
+    }
 
 
     /**
@@ -64,7 +68,7 @@ public class OAuth2Realm extends AuthorizingRealm {
             rolesSet.add(sysRole.getCode());
             List<SysMenu> menuList = sysMenuService.selectMenuByRoleId(sysRole.getId());
             for (SysMenu menu : menuList) {
-                permsSet.add(menu.getApi());
+                permsSet.add(menu.getCode());
             }
         }
 

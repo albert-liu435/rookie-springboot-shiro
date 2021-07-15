@@ -1,4 +1,4 @@
-package util;
+package com.rookie.bigdata.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Classname JWTUtils
  * @Description TODO
  * @Author rookie
- * @Date 2021/7/13 15:08
+ * @Date 2021/7/14 16:36
  * @Version 1.0
  */
 public class JWTUtils {
@@ -29,16 +29,14 @@ public class JWTUtils {
 
     public static final String TOKEN_PREFIX = "Bearer ";
 
-    private static final String SECRET = "adasdsdjlsjdsjouaji9fjnskldnfsodfijhsjioufghdjsanjdskj";
+    public static final String SECRET = "cereshuzhitingnizhenbangcereshuzhitingnizhenbangadasdsssdsdsqwieworptertiiousdnnnvdsdhjkjfhskhdssnz";
 
     /**
      * 签发人
      */
-    private static final String ISSUER = "rookie";
+    public static final String ISSUER = "rookie";
 
 
-    private JWTUtils() {
-    }
 
     /**
      * Description: 创建 Json Web Token
