@@ -1,0 +1,18 @@
+server:
+  port: 8085
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/safe?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 80
+      pool-name: HikariCP
